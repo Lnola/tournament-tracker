@@ -9,3 +9,15 @@ import BaseLoading from '@/components/common/base-loading.vue';
 
 const { isLoading } = useAuth0();
 </script>
+
+<style>
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+}
+</style>
