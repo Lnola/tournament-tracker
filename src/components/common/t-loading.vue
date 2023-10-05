@@ -1,7 +1,7 @@
 <template>
   <main class="t-loading">
     <ProgressSpinner
-      strokeWidth="8"
+      strokeWidth="6"
       :pt="{
         circle: {
           style: {
