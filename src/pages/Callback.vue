@@ -1,3 +1,3 @@
-<template>Callback</template>
+<template>Loading...</template>
 
 <script lang="ts" setup></script>
