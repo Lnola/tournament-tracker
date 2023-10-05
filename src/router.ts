@@ -3,6 +3,7 @@ import Home from '@/pages/home-page.vue';
 import Management from '@/pages/management-page.vue';
 import Callback from '@/pages/callback-page.vue';
 
+// TODO: add guards to routes
 const routes = [
   {
     path: '/',
