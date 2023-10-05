@@ -1,5 +1,5 @@
 <template>
-  <main class="app-loading">
+  <main class="w-full h-full flex align-items-center justify-content-center">
     <ProgressSpinner
       strokeWidth="6"
       :pt="{
@@ -17,13 +17,3 @@
 <script lang="ts" setup>
 import ProgressSpinner from 'primevue/progressspinner';
 </script>
-
-<style scoped>
-.app-loading {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>
