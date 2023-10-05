@@ -1,5 +1,5 @@
 <template>
-  <main class="t-loading">
+  <main class="app-loading">
     <ProgressSpinner
       strokeWidth="6"
       :pt="{
@@ -19,7 +19,7 @@ import ProgressSpinner from 'primevue/progressspinner';
 </script>
 
 <style scoped>
-.t-loading {
+.app-loading {
   width: 100%;
   height: 100%;
   display: flex;
