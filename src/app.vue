@@ -1,11 +1,15 @@
 <template>
   <TLoading v-if="isLoading" />
-  <RouterView v-else />
+  <template v-else>
+    <TNav />
+    <RouterView />
+  </template>
 </template>
 
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue';
 import TLoading from '@/components/common/t-loading.vue';
+import TNav from '@/components/common/t-nav.vue';
 
 const { isLoading } = useAuth0();
 </script>
