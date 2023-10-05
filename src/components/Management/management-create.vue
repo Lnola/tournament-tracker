@@ -1,10 +1,10 @@
 <template>
-  <div class="flex flex-column align-items-center justify-content-center p-10">
+  <div class="flex flex-column align-items-center">
     <span class="p-float-label mb-5">
       <InputText
         id="tournament-name"
         v-model="tournamentName"
-        style="width: 14rem"
+        style="width: 15rem"
         :disabled="disabled"
       />
       <label for="tournament-name">Tournament name</label>
@@ -14,7 +14,7 @@
         input-id="team-names"
         v-model="teamNames"
         separator=";"
-        :pt="{ container: { style: { width: '14rem' } } }"
+        :pt="{ container: { style: { width: '15rem' } } }"
         :max="8"
         :min="4"
         :disabled="disabled"
@@ -22,7 +22,7 @@
       <label for="team-names">Chips</label>
     </span>
 
-    <section class="flex gap-3">
+    <section class="flex gap-3 mb-5">
       <span>
         <label for="points-win" class="block text-xs mb-2">Points Win</label>
         <InputNumber
@@ -57,6 +57,8 @@
         />
       </span>
     </section>
+
+    <Button type="submit" label="Submit" class="w-15rem" />
   </div>
 </template>
 
@@ -65,6 +67,7 @@ import { reactive, ref } from 'vue';
 import InputText from 'primevue/inputtext';
 import Chips from 'primevue/chips';
 import InputNumber from 'primevue/inputnumber';
+import Button from 'primevue/button';
 import { type Points } from '@/types/points';
 
 defineProps({
