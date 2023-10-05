@@ -11,6 +11,9 @@ dependencies:
   '@types/node':
     specifier: ^20.8.2
     version: 20.8.2
+  primeicons:
+    specifier: ^6.0.1
+    version: 6.0.1
   primevue:
     specifier: ^3.35.0
     version: 3.35.0(vue@3.3.4)
@@ -1362,6 +1365,10 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
     dev: true
+
+  /primeicons@6.0.1:
+    resolution: {integrity: sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==}
+    dev: false
 
   /primevue@3.35.0(vue@3.3.4):
     resolution: {integrity: sha512-p1YTxBtxG9SyGvHKRqO0LbacJZUYJfUOPgLu7kwhXR34E1Rcmu6iDBnZ2c3jkH+wmRL4fMzQmNnpX6DUrLtGfQ==}
