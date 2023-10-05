@@ -1,3 +1,3 @@
-<template>Profile</template>
+<template>Management</template>
 
 <script lang="ts" setup></script>

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/pages/home-page.vue';
-import Profile from '@/pages/profile-page.vue';
+import Management from '@/pages/management-page.vue';
 import Callback from '@/pages/callback-page.vue';
 
 const routes = [
@@ -10,9 +10,9 @@ const routes = [
     component: Home,
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
+    path: '/management',
+    name: 'Management',
+    component: Management,
   },
   {
     path: '/callback',

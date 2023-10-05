@@ -15,13 +15,13 @@ const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
 const handleLogin = () => {
   loginWithRedirect({
-    appState: { target: '/profile' },
+    appState: { target: '/management' },
   });
 };
 
 const handleSignup = () => {
   loginWithRedirect({
-    appState: { target: '/profile' },
+    appState: { target: '/management' },
     authorizationParams: { screen_hint: 'signup' },
   });
 };
