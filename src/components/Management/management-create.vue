@@ -1,55 +1,63 @@
 <template>
-  <span class="p-float-label mb-5">
-    <InputText
-      id="tournament-name"
-      v-model="tournamentName"
-      :disabled="disabled"
-    />
-    <label for="tournament-name">Tournament name</label>
-  </span>
-  <span class="p-float-label mb-5">
-    <Chips
-      id="team-names"
-      v-model="teamNames"
-      separator=";"
-      :disabled="disabled"
-    />
-    <label for="team-names">Chips</label>
-  </span>
+  <div class="flex flex-column align-items-center justify-content-center p-10">
+    <span class="p-float-label mb-5">
+      <InputText
+        id="tournament-name"
+        v-model="tournamentName"
+        style="width: 14rem"
+        :disabled="disabled"
+      />
+      <label for="tournament-name">Tournament name</label>
+    </span>
+    <span class="p-float-label mb-3">
+      <Chips
+        input-id="team-names"
+        v-model="teamNames"
+        separator=";"
+        :pt="{ container: { style: { width: '14rem' } } }"
+        :max="8"
+        :min="4"
+        :disabled="disabled"
+      />
+      <label for="team-names">Chips</label>
+    </span>
 
-  <span class="mb-5">
-    <label for="points-win" class="block text-xs mb-2">Points Win</label>
-    <InputNumber
-      id="points-win"
-      v-model="points.win"
-      showButtons
-      buttonLayout="vertical"
-      style="width: 4rem"
-      :disabled="disabled"
-    />
-  </span>
-  <span class="mb-5">
-    <label for="points-draw" class="block text-xs mb-2">Points Draw</label>
-    <InputNumber
-      id="points-draw"
-      v-model="points.draw"
-      showButtons
-      buttonLayout="vertical"
-      style="width: 4rem"
-      :disabled="disabled"
-    />
-  </span>
-  <span class="mb-5">
-    <label for="points-loss" class="block text-xs mb-2">Points Loss</label>
-    <InputNumber
-      id="points-loss"
-      v-model="points.loss"
-      showButtons
-      buttonLayout="vertical"
-      style="width: 4rem"
-      :disabled="disabled"
-    />
-  </span>
+    <section class="flex gap-3">
+      <span>
+        <label for="points-win" class="block text-xs mb-2">Points Win</label>
+        <InputNumber
+          input-id="points-win"
+          v-model="points.win"
+          showButtons
+          buttonLayout="vertical"
+          style="width: 4rem"
+          :disabled="disabled"
+        />
+      </span>
+      <span>
+        <label for="points-draw" class="block text-xs mb-2">Points Draw</label>
+        <InputNumber
+          input-id="points-draw"
+          v-model="points.draw"
+          showButtons
+          buttonLayout="vertical"
+          style="width: 4rem"
+          :disabled="disabled"
+        />
+      </span>
+      <span>
+        <label for="points-loss" class="block text-xs mb-2">Points Loss</label>
+        <InputNumber
+          input-id="points-loss"
+          v-model="points.loss"
+          showButtons
+          buttonLayout="vertical"
+          style="width: 4rem"
+          :disabled="disabled"
+        />
+      </span>
+    </section>
+  </div>
 </template>
 
 <script lang="ts" setup>
