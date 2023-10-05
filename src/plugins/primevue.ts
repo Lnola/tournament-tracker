@@ -1,3 +1,3 @@
-import 'primevue/resources/themes/saga-orange/theme.css';
+import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primeicons/primeicons.css';
 export { default as default } from 'primevue/config';
