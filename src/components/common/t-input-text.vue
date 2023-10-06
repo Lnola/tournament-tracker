@@ -1,14 +1,19 @@
 <template>
-  <span class="p-float-label mb-5">
-    <InputText
-      v-bind="bind"
-      :id="inputId"
-      :style="{ width }"
-      :disabled="disabled"
-    />
-    <label :for="inputId">{{ label }}</label>
-    <div>{{ errorMessage }}</div>
-  </span>
+  <article>
+    <span class="p-float-label">
+      <InputText
+        :model-value="bind.value"
+        @change="bind.onChange"
+        :id="inputId"
+        :style="{ width }"
+        :disabled="disabled"
+      />
+      <label :for="inputId">{{ label }}</label>
+    </span>
+    <div class="p-error text-sm" :class="`max-w-${width}`">
+      {{ errorMessage }}&nbsp;
+    </div>
+  </article>
 </template>
 
 <script lang="ts" setup>

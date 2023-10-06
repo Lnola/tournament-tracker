@@ -1,17 +1,19 @@
 <template>
-  <span class="p-float-label mb-3">
-    <Chips
-      v-bind="bind"
-      separator=";"
-      :pt="{ container: { style: { width: '15rem' } } }"
-      :max="8"
-      :min="4"
-      :input-id="inputId"
-      :disabled="disabled"
-    />
-    <label :for="inputId">{{ label }}</label>
-    <div>{{ errorMessage }}</div>
-  </span>
+  <article>
+    <span class="p-float-label">
+      <Chips
+        v-bind="bind"
+        separator=";"
+        :pt="{ container: { style: { width } } }"
+        :input-id="inputId"
+        :disabled="disabled"
+      />
+      <label :for="inputId">{{ label }}</label>
+    </span>
+    <div class="p-error text-sm" :class="`max-w-${width}`">
+      {{ errorMessage }}&nbsp;
+    </div>
+  </article>
 </template>
 
 <script lang="ts" setup>
