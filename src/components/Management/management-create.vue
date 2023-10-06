@@ -38,7 +38,12 @@
       />
     </section>
 
-    <Button type="submit" label="Create" class="w-15rem" />
+    <Button
+      :disabled="!meta.valid"
+      type="submit"
+      label="Create"
+      class="w-15rem"
+    />
   </form>
 </template>
 
@@ -55,7 +60,7 @@ defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-const { handleSubmit, defineInputBinds, defineComponentBinds, errors } =
+const { handleSubmit, defineInputBinds, defineComponentBinds, errors, meta } =
   useForm({
     validationSchema: toTypedSchema(
       object({
