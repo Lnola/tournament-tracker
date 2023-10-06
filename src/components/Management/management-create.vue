@@ -39,6 +39,7 @@
     </section>
 
     <Button
+      v-if="!disabled"
       :disabled="!meta.valid"
       type="submit"
       label="Create"
