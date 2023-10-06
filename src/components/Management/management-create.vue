@@ -6,6 +6,7 @@
       :error-message="errors.tournamentName"
       label="Tournament name"
       input-id="tournament-name"
+      class="mb-5"
     />
     <TChips
       :bind="teamNames"
@@ -13,6 +14,7 @@
       :error-message="errors.teamNames"
       label="Team names"
       input-id="team-names"
+      class="mb-3"
     />
 
     <section class="flex gap-3 mb-5">
