@@ -2,7 +2,7 @@
   <form @submit="onSubmit" class="flex flex-column align-items-center">
     <TInputText
       :bind="name"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :error-message="errors.name"
       label="Tournament name"
       input-id="tournament-name"
@@ -10,7 +10,7 @@
     />
     <TChips
       :bind="competitors"
-      :disabled="disabled"
+      :disabled="isDisabled"
       :error-message="errors.competitors"
       label="Team names"
       input-id="team-names"
@@ -20,19 +20,19 @@
     <section class="flex gap-3 mb-5">
       <TInputNumber
         :bind="pointsWin"
-        :disabled="disabled"
+        :disabled="isDisabled"
         label="Points Win"
         input-id="points-win"
       />
       <TInputNumber
         :bind="pointsDraw"
-        :disabled="disabled"
+        :disabled="isDisabled"
         label="Points Draw"
         input-id="points-draw"
       />
       <TInputNumber
         :bind="pointsLoss"
-        :disabled="disabled"
+        :disabled="isDisabled"
         label="Points Loss"
         input-id="points-loss"
       />
@@ -40,7 +40,7 @@
 
     <Button
       v-if="!disabled"
-      :disabled="!meta.valid"
+      :disabled="isSubmitDisabled"
       type="submit"
       label="Create"
       class="w-15rem"
@@ -49,6 +49,7 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { useForm } from 'vee-validate';
 import { object, string, array, number } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
@@ -59,14 +60,19 @@ import TInputNumber from '@/components/common/t-input-number.vue';
 import TChips from '@/components/common/t-chips.vue';
 import { createTournament } from '@/api/tournament';
 
-defineProps({
+const props = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
 const toast = useToast();
 
+const isDisabled = computed(() => isSubmitting.value || props.disabled);
+const isInValid = computed(() => !meta.value.valid);
+const isSubmitDisabled = computed(() => isSubmitting.value || isInValid.value);
+
 const {
   meta,
+  isSubmitting,
   handleSubmit,
   defineInputBinds,
   defineComponentBinds,
