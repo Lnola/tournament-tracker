@@ -56,6 +56,7 @@ import Button from 'primevue/button';
 import TInputText from '@/components/common/t-input-text.vue';
 import TInputNumber from '@/components/common/t-input-number.vue';
 import TChips from '@/components/common/t-chips.vue';
+import { createTournament } from '@/api/tournament';
 
 defineProps({
   disabled: { type: Boolean, default: false },
@@ -82,5 +83,13 @@ const pointsWin = defineComponentBinds('points.win');
 const pointsDraw = defineComponentBinds('points.draw');
 const pointsLoss = defineComponentBinds('points.loss');
 
-const onSubmit = handleSubmit((values) => console.log(values));
+// TODO: replace alerts with toast
+const onSubmit = handleSubmit(async (values) => {
+  try {
+    await createTournament(values);
+    alert('saved');
+  } catch (error) {
+    alert(error);
+  }
+});
 </script>
