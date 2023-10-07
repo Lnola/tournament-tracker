@@ -62,20 +62,26 @@ defineProps({
   disabled: { type: Boolean, default: false },
 });
 
-const { handleSubmit, defineInputBinds, defineComponentBinds, errors, meta } =
-  useForm({
-    validationSchema: toTypedSchema(
-      object({
-        name: string().required(),
-        competitors: array().of(string().required()).min(4).max(8).required(),
-        points: object({
-          win: number().required().default(0),
-          draw: number().required().default(0),
-          loss: number().required().default(0),
-        }),
+const {
+  handleSubmit,
+  defineInputBinds,
+  defineComponentBinds,
+  errors,
+  meta,
+  resetForm,
+} = useForm({
+  validationSchema: toTypedSchema(
+    object({
+      name: string().required(),
+      competitors: array().of(string().required()).min(4).max(8).required(),
+      points: object({
+        win: number().required().default(0),
+        draw: number().required().default(0),
+        loss: number().required().default(0),
       }),
-    ),
-  });
+    }),
+  ),
+});
 
 const name = defineInputBinds('name');
 const competitors = defineComponentBinds('competitors');
@@ -87,6 +93,7 @@ const pointsLoss = defineComponentBinds('points.loss');
 const onSubmit = handleSubmit(async (values) => {
   try {
     await createTournament(values);
+    resetForm();
     alert('saved');
   } catch (error) {
     alert(error);
