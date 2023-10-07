@@ -14,6 +14,7 @@ export type Points = {
 };
 
 export type Tournament = {
+  publicId: string;
   name: string;
   competitors: Competitor[];
   points: Points;
