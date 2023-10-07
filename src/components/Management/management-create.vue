@@ -1,17 +1,17 @@
 <template>
   <form @submit="onSubmit" class="flex flex-column align-items-center">
     <TInputText
-      :bind="tournamentName"
+      :bind="name"
       :disabled="disabled"
-      :error-message="errors.tournamentName"
+      :error-message="errors.name"
       label="Tournament name"
       input-id="tournament-name"
       class="mb-5"
     />
     <TChips
-      :bind="teamNames"
+      :bind="competitors"
       :disabled="disabled"
-      :error-message="errors.teamNames"
+      :error-message="errors.competitors"
       label="Team names"
       input-id="team-names"
       class="mb-3"
@@ -65,8 +65,8 @@ const { handleSubmit, defineInputBinds, defineComponentBinds, errors, meta } =
   useForm({
     validationSchema: toTypedSchema(
       object({
-        tournamentName: string().required(),
-        teamNames: array().of(string()).min(4).max(8).required(),
+        name: string().required(),
+        competitors: array().of(string().required()).min(4).max(8).required(),
         points: object({
           win: number().required().default(0),
           draw: number().required().default(0),
@@ -76,8 +76,8 @@ const { handleSubmit, defineInputBinds, defineComponentBinds, errors, meta } =
     ),
   });
 
-const tournamentName = defineInputBinds('tournamentName');
-const teamNames = defineComponentBinds('teamNames');
+const name = defineInputBinds('name');
+const competitors = defineComponentBinds('competitors');
 const pointsWin = defineComponentBinds('points.win');
 const pointsDraw = defineComponentBinds('points.draw');
 const pointsLoss = defineComponentBinds('points.loss');
