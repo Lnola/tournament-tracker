@@ -53,6 +53,7 @@ import { useForm } from 'vee-validate';
 import { object, string, array, number } from 'yup';
 import { toTypedSchema } from '@vee-validate/yup';
 import Button from 'primevue/button';
+import { useToast } from 'primevue/usetoast';
 import TInputText from '@/components/common/t-input-text.vue';
 import TInputNumber from '@/components/common/t-input-number.vue';
 import TChips from '@/components/common/t-chips.vue';
@@ -61,6 +62,8 @@ import { createTournament } from '@/api/tournament';
 defineProps({
   disabled: { type: Boolean, default: false },
 });
+
+const toast = useToast();
 
 const {
   meta,
@@ -89,14 +92,23 @@ const pointsWin = defineComponentBinds('points.win');
 const pointsDraw = defineComponentBinds('points.draw');
 const pointsLoss = defineComponentBinds('points.loss');
 
-// TODO: replace alerts with toast
 const onSubmit = handleSubmit(async (values) => {
   try {
     await createTournament(values);
     resetForm();
-    alert('saved');
+    toast.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Tournament created!',
+      life: 3000,
+    });
   } catch (error) {
-    alert(error);
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Failed to create the tournament!',
+      life: 3000,
+    });
   }
 });
 </script>
