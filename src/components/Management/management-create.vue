@@ -63,12 +63,12 @@ defineProps({
 });
 
 const {
+  meta,
   handleSubmit,
   defineInputBinds,
   defineComponentBinds,
-  errors,
-  meta,
   resetForm,
+  errors,
 } = useForm({
   validationSchema: toTypedSchema(
     object({
