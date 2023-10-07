@@ -3,8 +3,8 @@ export type Competitor = string;
 export type Game = {
   home: Competitor;
   away: Competitor;
-  homeScore: number;
-  awayScore: number;
+  homeScore?: number;
+  awayScore?: number;
 };
 
 export type Points = {
