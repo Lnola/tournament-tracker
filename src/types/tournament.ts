@@ -7,6 +7,8 @@ export type Game = {
   awayScore?: number;
 };
 
+export type Round = Game[];
+
 export type Points = {
   win: number;
   draw: number;
@@ -18,5 +20,5 @@ export type Tournament = {
   name: string;
   competitors: Competitor[];
   points: Points;
-  schedule: Game[];
+  schedule: Round[];
 };
