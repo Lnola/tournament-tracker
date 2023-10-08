@@ -1,9 +1,16 @@
 import { v4 as uuid } from 'uuid';
-import db, { ref, set } from '@/plugins/firebase';
+import db, { get, child, ref, set } from '@/plugins/firebase';
 import { Round, Tournament } from '@/types/tournament';
 import { generateBrackets } from '@/utils/generate-brackets';
 
 type CreateTournamentDto = Pick<Tournament, 'name' | 'competitors' | 'points'>;
+
+export const getTournament = async (tournamentId: string) => {
+  const dbRef = ref(db);
+  const snapshot = await get(child(dbRef, `tournament/${tournamentId}`));
+  if (!snapshot.exists()) throw Error("The data doesn't exist");
+  return snapshot.val();
+};
 
 export const createTournament = (
   tournamentId: string,
