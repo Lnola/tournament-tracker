@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set } from 'firebase/database';
+import { child, get, getDatabase, ref, set } from 'firebase/database';
 
 const {
   VITE_FIREBASE_API_KEY,
@@ -24,5 +24,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export { ref, set };
+export { child, get, ref, set };
 export default db;
