@@ -12,7 +12,7 @@
             :key="round.toString()"
             :header="getRoundTitle(roundIndex)"
           >
-            <ManagementGames v-bind="{ round, roundIndex }" />
+            <TGamesList v-bind="{ round, roundIndex }" is-editable />
           </AccordionTab>
         </Accordion>
       </ScrollPanel>
@@ -26,7 +26,7 @@ import Card from 'primevue/card';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import ScrollPanel from 'primevue/scrollpanel';
-import ManagementGames from './management-games.vue';
+import TGamesList from '@/components/common/t-games-list.vue';
 import ManagementPublicLink from './management-public-link.vue';
 import { Tournament } from '@/types/tournament';
 
