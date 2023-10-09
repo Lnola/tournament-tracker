@@ -1,7 +1,7 @@
 <template>
   <main class="flex flex-column align-items-center justify-content-center px-7">
     <ManagementSkeleton v-if="isFetching" />
-    <ManagementCreate v-else-if="!tournament" />
+    <ManagementCreate v-else-if="!tournament" @created="fetchTournament" />
     <ManagementResults v-else :tournament="tournament" />
   </main>
 </template>
