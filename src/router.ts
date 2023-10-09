@@ -43,12 +43,16 @@ const router = createRouter({
 export default router;
 
 async function checkPublicId(to: RouteLocation) {
-  const key = 'publicId' as 'publicId';
-  const value = to.params.publicId as string;
-  const orderBy = { key, value };
-  const tournament = await getTournament({ orderBy });
-
-  if (!tournament.name) return false;
-  to.params = { ...to.params, tournament };
-  return true;
+  try {
+    const key = 'publicId' as 'publicId';
+    const value = to.params.publicId as string;
+    const orderBy = { key, value };
+    const tournament = await getTournament({ orderBy });
+    if (!tournament.name) return false;
+    to.params = { ...to.params, tournament };
+    return true;
+  } catch {
+    router.push('Home');
+    return false;
+  }
 }
