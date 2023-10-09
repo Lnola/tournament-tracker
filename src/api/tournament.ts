@@ -16,18 +16,17 @@ type GetTournamentParams = {
 type CreateTournamentDto = Pick<Tournament, 'name' | 'competitors' | 'points'>;
 
 export const getTournament = async ({
-  tournamentId,
+  tournamentId = '',
   orderBy,
 }: GetTournamentParams) => {
   const params = [
     orderBy && orderByChild(orderBy.key),
     orderBy && equalTo(orderBy.value),
   ].filter(Boolean) as QueryConstraint[];
-  const tournamentRef = query(
-    ref(db, `tournament/${tournamentId || ''}`),
-    ...params,
-  );
-  return getValue(tournamentRef);
+  const tournamentRef = query(ref(db, `tournament/${tournamentId}`), ...params);
+  const tournament = await getValue(tournamentRef);
+  if (!tournamentId) return Object.values(tournament)[0];
+  return tournament;
 };
 
 export const createTournament = (
