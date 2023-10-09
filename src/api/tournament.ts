@@ -9,17 +9,24 @@ type GetTournamentOrderBy = {
   key: 'publicId';
   value: string;
 };
+type GetTournamentParams = {
+  tournamentId?: string;
+  orderBy?: GetTournamentOrderBy;
+};
 type CreateTournamentDto = Pick<Tournament, 'name' | 'competitors' | 'points'>;
 
-export const getTournament = async (
-  tournamentId: string,
-  orderBy: GetTournamentOrderBy | null = null,
-) => {
+export const getTournament = async ({
+  tournamentId,
+  orderBy,
+}: GetTournamentParams) => {
   const params = [
     orderBy && orderByChild(orderBy.key),
     orderBy && equalTo(orderBy.value),
   ].filter(Boolean) as QueryConstraint[];
-  const tournamentRef = query(ref(db, `tournament/${tournamentId}`), ...params);
+  const tournamentRef = query(
+    ref(db, `tournament/${tournamentId || ''}`),
+    ...params,
+  );
   return getValue(tournamentRef);
 };
 

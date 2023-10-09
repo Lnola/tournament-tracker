@@ -23,7 +23,7 @@ const isFetching = ref<boolean>(false);
 
 const fetchTournament = async () => {
   const tournamentId = getTournamentId(user);
-  tournament.value = await getTournament(tournamentId);
+  tournament.value = await getTournament({ tournamentId });
 };
 
 onMounted(async () => {
