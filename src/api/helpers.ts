@@ -1,7 +1,6 @@
-import { useAuth0 } from '@auth0/auth0-vue';
+import { User } from '@auth0/auth0-vue';
 
-export const getTournamentId = () => {
-  const { user } = useAuth0();
+export const getTournamentId = (user: User) => {
   if (!user.value?.sub) return;
   return user.value.sub;
 };

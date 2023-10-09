@@ -52,6 +52,7 @@
 import { computed } from 'vue';
 import { useForm } from 'vee-validate';
 import { object, string, array, number } from 'yup';
+import { useAuth0 } from '@auth0/auth0-vue';
 import { toTypedSchema } from '@vee-validate/yup';
 import Button from 'primevue/button';
 import { useToast } from 'primevue/usetoast';
@@ -59,11 +60,13 @@ import TInputText from '@/components/common/t-input-text.vue';
 import TInputNumber from '@/components/common/t-input-number.vue';
 import TChips from '@/components/common/t-chips.vue';
 import { createTournament } from '@/api/tournament';
+import { getTournamentId } from '@/api/helpers';
 
 const props = defineProps({
   disabled: { type: Boolean, default: false },
 });
 
+const { user } = useAuth0();
 const toast = useToast();
 
 const isDisabled = computed(() => isSubmitting.value || props.disabled);
@@ -100,7 +103,8 @@ const pointsLoss = defineComponentBinds('points.loss');
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    await createTournament(values);
+    const tournamentId = getTournamentId(user);
+    await createTournament(tournamentId, values);
     resetForm();
     toast.add({
       severity: 'success',
