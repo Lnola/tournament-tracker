@@ -9,7 +9,7 @@
             :key="round.toString()"
             :header="getRoundTitle(roundIndex)"
           >
-            <ManagementGames :round="round" />
+            <ManagementGames v-bind="{ round, roundIndex }" />
           </AccordionTab>
         </Accordion>
       </ScrollPanel>

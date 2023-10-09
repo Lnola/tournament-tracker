@@ -32,14 +32,22 @@
 <script lang="ts" setup>
 import { PropType, ref } from 'vue';
 import find from 'lodash/find';
+import { useAuth0 } from '@auth0/auth0-vue';
 import DataTable, { DataTableRowEditSaveEvent } from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputNumber from 'primevue/inputnumber';
+import { useToast } from 'primevue/usetoast';
+import { updateGameScores } from '@/api/game';
+import { getTournamentId } from '@/api/helpers';
 import { Game } from '@/types/tournament';
 
 const props = defineProps({
   round: { type: Array as PropType<Game[]>, required: true },
+  roundIndex: { type: Number, required: true },
 });
+
+const toast = useToast();
+const { user } = useAuth0();
 
 const editingRows = ref([]);
 const games = ref(props.round);
@@ -54,9 +62,26 @@ const isFieldEditable = (field: string) => {
   return find(columns.value, { field })?.editable;
 };
 
-const onRowEditSave = (event: DataTableRowEditSaveEvent) => {
+const onRowEditSave = async (event: DataTableRowEditSaveEvent) => {
   let { newData, index } = event;
   games.value[index] = newData;
+  try {
+    const tournamentId = getTournamentId(user);
+    await updateGameScores(tournamentId, props.roundIndex, index, newData);
+    toast.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Game score updated!',
+      life: 3000,
+    });
+  } catch (error) {
+    toast.add({
+      severity: 'error',
+      summary: 'Error',
+      detail: 'Failed to update game scores!',
+      life: 3000,
+    });
+  }
 };
 </script>
 
