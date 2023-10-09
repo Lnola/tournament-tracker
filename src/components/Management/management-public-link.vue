@@ -24,7 +24,9 @@ const props = defineProps({
 });
 
 const toast = useToast();
-const publicLink = computed(() => [VITE_BASE_URL, props.publicId].join('/'));
+const publicLink = computed(() =>
+  [VITE_BASE_URL, 'tournaments', props.publicId].join('/'),
+);
 
 const copyToClipboard = () => {
   navigator.clipboard.writeText(publicLink.value);
