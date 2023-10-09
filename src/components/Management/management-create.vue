@@ -51,15 +51,15 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useForm } from 'vee-validate';
-import { object, string, array, number } from 'yup';
 import { useAuth0 } from '@auth0/auth0-vue';
 import { toTypedSchema } from '@vee-validate/yup';
+import { object, string, array, number } from '@/plugins/yup';
 import Button from 'primevue/button';
 import { useToast } from 'primevue/usetoast';
 import TInputText from '@/components/common/t-input-text.vue';
 import TInputNumber from '@/components/common/t-input-number.vue';
 import TChips from '@/components/common/t-chips.vue';
-import { createTournament } from '@/api/tournament';
+import { CreateTournamentDto, createTournament } from '@/api/tournament';
 import { getTournamentId } from '@/api/helpers';
 
 const props = defineProps({
@@ -68,6 +68,7 @@ const props = defineProps({
 
 const { user } = useAuth0();
 const toast = useToast();
+const competitorRegex = /^[a-zA-Z_][a-zA-Z0-9_ ]*$/;
 
 const isDisabled = computed(() => isSubmitting.value || props.disabled);
 const isInValid = computed(() => !meta.value.valid);
@@ -85,7 +86,13 @@ const {
   validationSchema: toTypedSchema(
     object({
       name: string().required(),
-      competitors: array().of(string().required()).min(4).max(8).required(),
+      competitors: array()
+        .of(string().matches(competitorRegex).required())
+        // @ts-ignore
+        .unique('Competitor names must be unique')
+        .min(4)
+        .max(8)
+        .required(),
       points: object({
         win: number().required().default(0),
         draw: number().required().default(0),
@@ -104,7 +111,7 @@ const pointsLoss = defineComponentBinds('points.loss');
 const onSubmit = handleSubmit(async (values) => {
   try {
     const tournamentId = getTournamentId(user);
-    await createTournament(tournamentId, values);
+    await createTournament(tournamentId, values as CreateTournamentDto);
     resetForm();
     toast.add({
       severity: 'success',
