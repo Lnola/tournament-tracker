@@ -1,6 +1,9 @@
 <template>
   <Card class="w-full">
     <template #title>{{ tournament.name }}</template>
+    <template #subtitle>
+      <ManagementPublicLink :public-id="tournament.publicId" />
+    </template>
     <template #content>
       <ScrollPanel style="height: 30rem">
         <Accordion :activeIndex="0" multiple>
@@ -24,6 +27,7 @@ import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import ScrollPanel from 'primevue/scrollpanel';
 import ManagementGames from './management-games.vue';
+import ManagementPublicLink from './management-public-link.vue';
 import { Tournament } from '@/types/tournament';
 
 defineProps({
