@@ -13,7 +13,10 @@ type GetTournamentParams = {
   tournamentId?: string;
   orderBy?: GetTournamentOrderBy;
 };
-type CreateTournamentDto = Pick<Tournament, 'name' | 'competitors' | 'points'>;
+export type CreateTournamentDto = Pick<
+  Tournament,
+  'name' | 'competitors' | 'points'
+>;
 
 export const getTournament = async ({
   tournamentId = '',
