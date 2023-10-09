@@ -59,7 +59,6 @@ import TInputText from '@/components/common/t-input-text.vue';
 import TInputNumber from '@/components/common/t-input-number.vue';
 import TChips from '@/components/common/t-chips.vue';
 import { createTournament } from '@/api/tournament';
-import { useAuth0 } from '@auth0/auth0-vue';
 
 const props = defineProps({
   disabled: { type: Boolean, default: false },
@@ -99,13 +98,9 @@ const pointsWin = defineComponentBinds('points.win');
 const pointsDraw = defineComponentBinds('points.draw');
 const pointsLoss = defineComponentBinds('points.loss');
 
-const { user } = useAuth0();
-
 const onSubmit = handleSubmit(async (values) => {
-  if (!user.value?.sub) return;
   try {
-    const tournamentId = user.value.sub;
-    await createTournament(tournamentId, values);
+    await createTournament(values);
     resetForm();
     toast.add({
       severity: 'success',
