@@ -62,6 +62,8 @@ import TChips from '@/components/common/t-chips.vue';
 import { CreateTournamentDto, createTournament } from '@/api/tournament';
 import { getTournamentId } from '@/api/helpers';
 
+const emits = defineEmits(['created']);
+
 const props = defineProps({
   disabled: { type: Boolean, default: false },
 });
@@ -119,6 +121,7 @@ const onSubmit = handleSubmit(async (values) => {
       detail: 'Tournament created!',
       life: 3000,
     });
+    emits('created');
   } catch (error) {
     toast.add({
       severity: 'error',
