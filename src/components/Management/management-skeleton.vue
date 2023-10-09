@@ -1,5 +1,5 @@
 <template>
-  <Skeleton />
+  <Skeleton height="30rem" />
 </template>
 
 <script lang="ts" setup>
