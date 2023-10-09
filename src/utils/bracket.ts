@@ -4,11 +4,15 @@ import keys from 'lodash/keys';
 import values from 'lodash/values';
 import { Round } from '@/types/tournament';
 
-export const getGamesPlayed = (competitor: string, schedule: Round[]) => {
+const getGamesPlayed = (competitor: string, schedule: Round[]) => {
   const gamesPlayed = filter(schedule.flat(), (game) => {
     const competitorPlayedInGame = includes(values(game), competitor);
     const scoreWasRecorded = includes(keys(game), 'homeScore');
     return competitorPlayedInGame && scoreWasRecorded;
   });
-  return gamesPlayed.length;
+  return gamesPlayed;
+};
+
+export const getGamesPlayedCount = (competitor: string, schedule: Round[]) => {
+  return getGamesPlayed(competitor, schedule).length;
 };
