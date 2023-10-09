@@ -1,38 +1,18 @@
 <template>
-  <Card class="w-full">
-    <template #title>{{ tournament.name }}</template>
+  <TResults :tournament="tournament" is-editable>
     <template #subtitle>
       <ManagementPublicLink :public-id="tournament.publicId" />
     </template>
-    <template #content>
-      <ScrollPanel style="height: 30rem">
-        <Accordion :activeIndex="0" multiple>
-          <AccordionTab
-            v-for="(round, roundIndex) in tournament.schedule"
-            :key="round.toString()"
-            :header="getRoundTitle(roundIndex)"
-          >
-            <TGamesList v-bind="{ round, roundIndex }" is-editable />
-          </AccordionTab>
-        </Accordion>
-      </ScrollPanel>
-    </template>
-  </Card>
+  </TResults>
 </template>
 
 <script lang="ts" setup>
 import { PropType } from 'vue';
-import Card from 'primevue/card';
-import Accordion from 'primevue/accordion';
-import AccordionTab from 'primevue/accordiontab';
-import ScrollPanel from 'primevue/scrollpanel';
-import TGamesList from '@/components/common/t-games-list.vue';
+import TResults from '@/components/common/t-results.vue';
 import ManagementPublicLink from './management-public-link.vue';
 import { Tournament } from '@/types/tournament';
 
 defineProps({
   tournament: { type: Object as PropType<Tournament>, required: true },
 });
-
-const getRoundTitle = (roundIndex: number) => `Round #${roundIndex + 1}`;
 </script>
