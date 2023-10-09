@@ -12,8 +12,8 @@
       :bind="competitors"
       :disabled="isDisabled"
       :error-message="errors.competitors"
-      label="Team names"
-      input-id="team-names"
+      label="Competitor names"
+      input-id="competitor-names"
       class="mb-3"
     />
 
