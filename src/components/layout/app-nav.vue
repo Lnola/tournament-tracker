@@ -4,7 +4,7 @@
       <RouterLink :to="{ name: 'Home' }">
         <i class="pi pi-home p-2 hover:surface-300 border-circle text-color" />
       </RouterLink>
-      <RouterLink :to="{ name: 'Management' }">
+      <RouterLink v-if="isAuthenticated" :to="{ name: 'Management' }">
         <i class="pi pi-cog p-2 hover:surface-300 border-circle text-color" />
       </RouterLink>
     </template>
