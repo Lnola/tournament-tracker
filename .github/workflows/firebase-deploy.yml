@@ -18,6 +18,22 @@ jobs:
           curl -L https://unpkg.com/@pnpm/self-installer@latest | node
           export PATH=$HOME/.pnpm-global/bin:$PATH
 
+      - name: Add .env
+        run: |
+          touch .env
+          echo VITE_BASE_URL=${{ secrets.VITE_BASE_URL }} >> .env
+          echo VITE_AUTH0_DOMAIN=${{ secrets.VITE_AUTH0_DOMAIN }} >> .env
+          echo VITE_AUTH0_CLIENT_ID=${{ secrets.VITE_AUTH0_CLIENT_ID }} >> .env
+          echo VITE_AUTH0_CALLBACK_URL=${{ secrets.VITE_AUTH0_CALLBACK_URL }} >> .env
+          echo VITE_FIREBASE_API_KEY=${{ secrets.VITE_FIREBASE_API_KEY }} >> .env
+          echo VITE_FIREBASE_AUTH_DOMAIN=${{ secrets.VITE_FIREBASE_AUTH_DOMAIN }} >> .env
+          echo VITE_FIREBASE_DATABASE_URL=${{ secrets.VITE_FIREBASE_DATABASE_URL }} >> .env
+          echo VITE_FIREBASE_PROJECT_ID=${{ secrets.VITE_FIREBASE_PROJECT_ID }} >> .env
+          echo VITE_FIREBASE_STORAGE_BUCKET=${{ secrets.VITE_FIREBASE_STORAGE_BUCKET }} >> .env
+          echo VITE_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.VITE_FIREBASE_MESSAGING_SENDER_ID }} >> .env
+          echo VITE_FIREBASE_APP_ID=${{ secrets.VITE_FIREBASE_APP_ID }} >> .env
+          cat .env
+
       - name: Install dependencies and build
         run: |
           (pnpm i && pnpm build)
