@@ -23,8 +23,14 @@ jobs:
           (pnpm i && pnpm build)
 
       - name: Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: w9jds/firebase-action@master
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TOURNAMENT_TRACKER_E1A65 }}'
-          projectId: tournament-tracker-e1a65
+          args: deploy --only hosting
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+
+        # uses: FirebaseExtended/action-hosting-deploy@v0
+        # with:
+        #   repoToken: '${{ secrets.GITHUB_TOKEN }}'
+        #   firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TOURNAMENT_TRACKER_E1A65 }}'
+        #   projectId: tournament-tracker-e1a65
