@@ -1,12 +1,10 @@
 <template>
-  <main class="flex flex-column align-items-center justify-content-center px-7">
-    <HomeCard
-      v-for="{ name, competitors, publicId } in tournaments"
-      :key="name"
-      v-bind="{ name, competitors, publicId }"
-      class="mb-5 w-full"
-    />
-  </main>
+  <HomeCard
+    v-for="{ name, competitors, publicId } in tournaments"
+    :key="name"
+    v-bind="{ name, competitors, publicId }"
+    class="mb-5 w-full"
+  />
 </template>
 
 <script lang="ts" setup>
@@ -30,9 +28,3 @@ onMounted(async () => {
   isFetching.value = false;
 });
 </script>
-
-<style scoped>
-main {
-  height: calc(100% - 72px);
-}
-</style>
