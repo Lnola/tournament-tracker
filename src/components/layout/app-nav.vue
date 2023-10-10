@@ -1,5 +1,13 @@
 <template>
   <Toolbar>
+    <template #start>
+      <RouterLink :to="{ name: 'Home' }">
+        <i class="pi pi-home p-2 hover:surface-300 border-circle text-color" />
+      </RouterLink>
+      <RouterLink :to="{ name: 'Management' }">
+        <i class="pi pi-cog p-2 hover:surface-300 border-circle text-color" />
+      </RouterLink>
+    </template>
     <template #end>
       <template v-if="!isAuthenticated">
         <Button
