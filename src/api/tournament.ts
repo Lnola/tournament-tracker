@@ -1,5 +1,12 @@
 import { v4 as uuid } from 'uuid';
-import db, { equalTo, orderByChild, query, ref, set } from '@/plugins/firebase';
+import db, {
+  equalTo,
+  orderByChild,
+  orderByKey,
+  query,
+  ref,
+  set,
+} from '@/plugins/firebase';
 import { getValue } from './helpers';
 import { generateBrackets } from '@/utils/generate-brackets';
 import { Round, Tournament } from '@/types/tournament';
@@ -23,13 +30,14 @@ export const getTournaments = async ({
   orderBy,
 }: GetTournamentsParams) => {
   const params = [
+    tournamentId.length && orderByKey(),
+    tournamentId.length && equalTo(tournamentId),
     orderBy && orderByChild(orderBy.key),
     orderBy && equalTo(orderBy.value),
   ].filter(Boolean) as QueryConstraint[];
-  const tournamentRef = query(ref(db, `tournament/${tournamentId}`), ...params);
+  const tournamentRef = query(ref(db, `tournament`), ...params);
   const tournament = await getValue(tournamentRef);
-  if (!tournamentId) return Object.values(tournament)[0];
-  return tournament;
+  return Object.values(tournament)[0];
 };
 
 export const createTournament = (
