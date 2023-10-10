@@ -5,6 +5,7 @@ import {
   get,
   getDatabase,
   orderByChild,
+  orderByKey,
   query,
   ref,
   set,
@@ -33,5 +34,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-export { child, equalTo, get, orderByChild, query, ref, set };
+export { child, equalTo, get, orderByChild, orderByKey, query, ref, set };
 export default db;
