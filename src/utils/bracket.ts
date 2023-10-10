@@ -3,7 +3,6 @@ import filter from 'lodash/filter';
 import includes from 'lodash/includes';
 import values from 'lodash/values';
 import reduce from 'lodash/reduce';
-import findKey from 'lodash/findkey';
 import { Points, Round, Game } from '@/types/tournament';
 
 type RequiredGame = Required<Game>;
@@ -36,7 +35,9 @@ export const getPoints = (
   const competitorPoints = reduce(
     gamesPlayed,
     (total: number, game: RequiredGame) => {
-      const key = findKey(game, (value) => value === competitor);
+      const key = Object.keys(game).find(
+        (key) => game[key as keyof RequiredGame] === competitor,
+      );
       let thisTeam: keyof Game = 'homeScore';
       let otherTeam: keyof Game = 'awayScore';
       if (key === 'away') {
