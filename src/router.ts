@@ -1,11 +1,11 @@
 import { RouteLocation, createRouter, createWebHistory } from 'vue-router';
+import { authGuard } from '@auth0/auth0-vue';
 import Home from '@/pages/home-page.vue';
 import Management from '@/pages/management-page.vue';
 import Callback from '@/pages/callback-page.vue';
 import Tournament from '@/pages/tournament-page.vue';
 import { getTournaments } from './api/tournament';
 
-// TODO: add guards to routes
 const routes = [
   {
     path: '/',
@@ -23,6 +23,7 @@ const routes = [
     path: '/management',
     name: 'Management',
     component: Management,
+    beforeEnter: [authGuard],
   },
   {
     path: '/callback',
