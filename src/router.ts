@@ -47,9 +47,9 @@ async function checkPublicId(to: RouteLocation) {
     const key = 'publicId' as 'publicId';
     const value = to.params.publicId as string;
     const orderBy = { key, value };
-    const tournament = await getTournaments({ orderBy });
+    const tournament = (await getTournaments({ orderBy }))[0];
     if (!tournament.name) return false;
-    to.params = { ...to.params, tournament };
+    to.params = { ...to.params, tournament: tournament as any };
     return true;
   } catch {
     router.push('Home');

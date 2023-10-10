@@ -24,7 +24,7 @@ const isFetching = ref<boolean>(false);
 const fetchTournament = async () => {
   try {
     const tournamentId = getTournamentId(user);
-    tournament.value = await getTournaments({ tournamentId });
+    tournament.value = (await getTournaments({ tournamentId }))[0];
   } catch {}
 };
 

@@ -28,7 +28,7 @@ export type CreateTournamentDto = Pick<
 export const getTournaments = async ({
   tournamentId = '',
   orderBy,
-}: GetTournamentsParams) => {
+}: GetTournamentsParams): Promise<Tournament[]> => {
   const params = [
     tournamentId.length && orderByKey(),
     tournamentId.length && equalTo(tournamentId),
@@ -37,7 +37,7 @@ export const getTournaments = async ({
   ].filter(Boolean) as QueryConstraint[];
   const tournamentRef = query(ref(db, `tournament`), ...params);
   const tournament = await getValue(tournamentRef);
-  return Object.values(tournament)[0];
+  return Object.values(tournament);
 };
 
 export const createTournament = (
