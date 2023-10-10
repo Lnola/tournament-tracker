@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          (pnpm ci && pnpm build)
+          (pnpm i && pnpm build)
 
       - name: Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
