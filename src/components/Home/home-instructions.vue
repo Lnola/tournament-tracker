@@ -1,13 +1,16 @@
 <template>
   <span class="flex flex-column gap-3 mb-5">
     <span v-if="!isAuthenticated">Sign in to create a new tournament</span>
-    <RouterLink :to="{ name: 'Management' }">
+    <component
+      :is="isAuthenticated ? 'RouterLink' : 'span'"
+      :to="{ name: 'Management' }"
+    >
       <Button
         label="Manage a tournament"
         icon="pi pi-plus"
         :disabled="!isAuthenticated"
       />
-    </RouterLink>
+    </component>
   </span>
 </template>
 
