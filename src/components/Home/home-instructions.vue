@@ -1,5 +1,5 @@
 <template>
-  <span class="flex flex-column gap-3 mb-5">
+  <span class="flex flex-column align-items-center gap-3 mb-5">
     <span v-if="!isAuthenticated">Sign in to create a new tournament</span>
     <TRouterLink :to="{ name: 'Management' }" :disabled="!isAuthenticated">
       <Button
