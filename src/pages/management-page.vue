@@ -1,5 +1,7 @@
 <template>
-  <main class="flex flex-column align-items-center justify-content-center px-7">
+  <main
+    class="app-content flex flex-column align-items-center justify-content-center px-7"
+  >
     <ManagementSkeleton v-if="isFetching" />
     <ManagementCreate v-else-if="!tournament" @created="fetchTournament" />
     <ManagementResults v-else :tournament="tournament" />
@@ -34,9 +36,3 @@ onMounted(async () => {
   isFetching.value = false;
 });
 </script>
-
-<style scoped>
-main {
-  height: calc(100% - 72px);
-}
-</style>

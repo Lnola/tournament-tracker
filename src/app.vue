@@ -26,4 +26,8 @@ body {
 #app {
   height: 100%;
 }
+
+.app-content {
+  height: calc(100% - 72px);
+}
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <main class="flex flex-column align-items-center justify-content-center px-7">
+  <main
+    class="app-content flex flex-column align-items-center justify-content-center px-7"
+  >
     <TabView class="w-full">
       <TabPanel header="Results">
         <TournamentResults :tournament="tournament" />
@@ -24,9 +26,3 @@ defineProps({
   tournament: { type: Object as PropType<Tournament>, required: true },
 });
 </script>
-
-<style scoped>
-main {
-  height: calc(100% - 72px);
-}
-</style>
