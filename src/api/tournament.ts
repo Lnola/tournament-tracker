@@ -5,23 +5,23 @@ import { generateBrackets } from '@/utils/generate-brackets';
 import { Round, Tournament } from '@/types/tournament';
 import { QueryConstraint } from 'firebase/database';
 
-type GetTournamentOrderBy = {
+type GetTournamentsOrderBy = {
   key: 'publicId';
   value: string;
 };
-type GetTournamentParams = {
+type GetTournamentsParams = {
   tournamentId?: string;
-  orderBy?: GetTournamentOrderBy;
+  orderBy?: GetTournamentsOrderBy;
 };
 export type CreateTournamentDto = Pick<
   Tournament,
   'name' | 'competitors' | 'points'
 >;
 
-export const getTournament = async ({
+export const getTournaments = async ({
   tournamentId = '',
   orderBy,
-}: GetTournamentParams) => {
+}: GetTournamentsParams) => {
   const params = [
     orderBy && orderByChild(orderBy.key),
     orderBy && equalTo(orderBy.value),

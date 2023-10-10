@@ -12,9 +12,9 @@ import { useAuth0 } from '@auth0/auth0-vue';
 import ManagementSkeleton from '@/components/Management/management-skeleton.vue';
 import ManagementCreate from '@/components/Management/management-create.vue';
 import ManagementResults from '@/components/Management/management-results.vue';
-import { getTournament } from '@/api/tournament';
-import { Tournament } from '@/types/tournament';
+import { getTournaments } from '@/api/tournament';
 import { getTournamentId } from '@/api/helpers';
+import { Tournament } from '@/types/tournament';
 
 const { user } = useAuth0();
 
@@ -24,7 +24,7 @@ const isFetching = ref<boolean>(false);
 const fetchTournament = async () => {
   try {
     const tournamentId = getTournamentId(user);
-    tournament.value = await getTournament({ tournamentId });
+    tournament.value = await getTournaments({ tournamentId });
   } catch {}
 };
 
