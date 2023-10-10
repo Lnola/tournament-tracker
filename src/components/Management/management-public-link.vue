@@ -1,7 +1,9 @@
 <template>
   <span>Public URL: </span>
   <div class="flex align-items-center">
-    <pre class="mr-2 my-0">{{ publicLink }}</pre>
+    <pre class="mr-2 my-0 text-overflow-ellipsis overflow-hidden">{{
+      publicLink
+    }}</pre>
     <Button
       @click="copyToClipboard"
       icon="pi pi-copy"
