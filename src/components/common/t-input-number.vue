@@ -8,6 +8,8 @@
       :style="{ width }"
       :input-id="inputId"
       :disabled="disabled"
+      mode="decimal"
+      :max-fraction-digits="2"
     />
   </span>
 </template>
