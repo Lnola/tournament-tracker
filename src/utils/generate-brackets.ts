@@ -3,19 +3,20 @@ import { Competitor, Round } from '@/types/tournament';
 const BYE: Competitor = 'BYE';
 export const generateBrackets = (competitors: Competitor[]): Round[] => {
   const schedule = [];
+  const competitorsCopy = [...competitors];
 
-  if (competitors.length % 2 !== 0) competitors.push(BYE);
-  for (let round = 1; round < competitors.length; round++) {
+  if (competitorsCopy.length % 2 !== 0) competitorsCopy.push(BYE);
+  for (let round = 1; round < competitorsCopy.length; round++) {
     const roundMatches = [];
 
-    for (let i = 0, j = competitors.length - 1; i < j; i++, j--) {
-      const [home, away] = [competitors[i], competitors[j]];
+    for (let i = 0, j = competitorsCopy.length - 1; i < j; i++, j--) {
+      const [home, away] = [competitorsCopy[i], competitorsCopy[j]];
       if (home === BYE || away === BYE) continue;
       roundMatches.push({ home, away });
     }
     schedule.push(roundMatches);
 
-    competitors.splice(1, 0, competitors.pop() || '');
+    competitorsCopy.splice(1, 0, competitorsCopy.pop() || '');
   }
 
   return schedule;
